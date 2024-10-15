@@ -1,14 +1,15 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM python:3.9-slim
 
 ENV LANG C.UTF-8
 
-# Install Python 3, pip, and build tools
-RUN apk add --no-cache python3 py3-pip build-base
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    gcc \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 -v
 # Install Python packages
-RUN pip3 install --no-cache-dir paho-mqtt requests PyYAML -v
+RUN pip install --no-cache-dir paho-mqtt requests PyYAML
 
 # Copy application files
 COPY mediola2mqtt.py /
@@ -19,4 +20,5 @@ RUN chmod a+x /run.sh
 
 # Set the default command
 CMD ["/run.sh"]
+
 
