@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 # Install Python 3, pip, and build tools
 RUN apk add --no-cache python3 py3-pip build-base
 
+RUN pip3 -v
 # Install Python packages
 RUN pip3 install --no-cache-dir paho-mqtt requests PyYAML -v
 
