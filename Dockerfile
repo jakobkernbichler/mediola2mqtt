@@ -7,7 +7,7 @@ ENV LANG C.UTF-8
 RUN apk add --no-cache python3 py3-pip build-base
 
 # Install Python packages
-RUN pip3 install --no-cache-dir paho-mqtt requests PyYAML
+RUN pip3 install --no-cache-dir paho-mqtt requests PyYAML -v
 
 # Copy application files
 COPY mediola2mqtt.py /
